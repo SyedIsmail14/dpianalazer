@@ -3,54 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DPI Analyzer Tool - Measure Mouse, Image, and Monitor DPI</title>
-    <meta name="description" content="Accurately measure and analyze DPI for your mouse, images, and monitor with our free online DPI Analyzer Tool. Get precise results instantly.">
-    <meta name="keywords" content="DPI analyzer, mouse DPI, image DPI, monitor DPI, DPI measurement tool">
-    <link rel="canonical" href="https://www.example.com/dpi-analyzer-tool">
+    <title>DPI Analyzer Tool</title>
     <style>
-        /* General Styles */
         body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
             color: #333;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-        .container {
-            max-width: 1200px;
+            max-width: 800px;
             margin: 0 auto;
-            padding: 0 20px;
-        }
-        header {
-            background-color: #2c3e50;
-            color: #fff;
-            padding: 1rem 0;
-        }
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-        .nav-links {
-            list-style: none;
-            display: flex;
-            flex-wrap: wrap;
-            margin: 0;
-            padding: 0;
-        }
-        .nav-links li {
-            margin: 5px 10px;
-        }
-        .nav-links a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 1rem;
+            padding: 20px;
+            background-color: #f4f4f4;
         }
         h1, h2 {
             color: #2c3e50;
@@ -60,7 +22,7 @@
             border-radius: 5px;
             padding: 20px;
             margin-bottom: 20px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         #mouseBox {
             width: 100%;
@@ -91,124 +53,115 @@
         th {
             background-color: #f2f2f2;
         }
-        .how-to-use {
-            background-color: #e8f4fd;
-            border-left: 4px solid #3498db;
-            padding: 15px;
-            margin-bottom: 20px;
-        }
-        .how-to-use h3 {
-            margin-top: 0;
-            color: #3498db;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .container {
-                padding: 0 10px;
-            }
-            .logo {
-                font-size: 1.3rem;
-            }
-            .nav-links {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .nav-links li {
-                margin: 5px 0;
-            }
-            h1, h2 {
-                font-size: 1.5rem;
-            }
-            .how-to-use {
-                padding: 10px;
-                font-size: 0.9rem;
-            }
-            #mouseBox {
-                height: 200px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .nav-links a {
-                font-size: 0.9rem;
-            }
-            h1, h2 {
-                font-size: 1.2rem;
-            }
-            table {
-                font-size: 0.8rem;
-            }
-            #mouseBox {
-                height: 150px;
-            }
-            .how-to-use {
-                font-size: 0.8rem;
-            }
-        }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <nav>
-                <div class="logo">DPI Analyzer</div>
-                <ul class="nav-links">
-                    <li><a href="#mouse-dpi">Mouse DPI</a></li>
-                    <li><a href="#image-dpi">Image DPI</a></li>
-                    <li><a href="#monitor-dpi">Monitor DPI</a></li>
-                    <li><a href="#dpi-comparison">DPI Comparison</a></li>
-                    <li><a href="#faq">FAQ</a></li>
-                </ul>
-            </nav>
+    <h1>DPI Analyzer Tool</h1>
+
+    <div class="analyzer">
+        <h2>Mouse DPI Analyzer</h2>
+        <p>Click and drag your mouse in any direction within the box below. The calculation will start when you begin moving and stop when you release the mouse button. Results will reset automatically after each measurement.</p>
+        <div id="mouseBox">
+            <div id="dot"></div>
         </div>
-    </header>
+        <table id="resultTable">
+            <thead>
+                <tr>
+                    <th>Measurement</th>
+                    <th>Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Distance (pixels)</td>
+                    <td id="distancePixels">0</td>
+                </tr>
+                <tr>
+                    <td>DPI</td>
+                    <td id="dpiResult">0</td>
+                </tr>
+                <tr>
+                    <td>Duration (seconds)</td>
+                    <td id="duration">0</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
-    <div class="container">
-        <h1>DPI Analyzer Tool</h1>
+    <script>
+        const mouseBox = document.getElementById('mouseBox');
+        const dot = document.getElementById('dot');
+        const distancePixelsCell = document.getElementById('distancePixels');
+        const dpiResultCell = document.getElementById('dpiResult');
+        const durationCell = document.getElementById('duration');
 
-        <div class="how-to-use">
-            <h3>How to Use This Tool</h3>
-            <ol>
-                <li>For Mouse DPI: Click and drag within the box below. Release to see results.</li>
-                <li>For Image DPI: Upload an image using the provided input.</li>
-                <li>For Monitor DPI: Your monitor's DPI is automatically calculated.</li>
-                <li>Compare your results with common devices in the DPI Comparison table.</li>
-            </ol>
-        </div>
+        let isCalculating = false;
+        let startX, startY, startTime;
+        let totalDistance = 0;
 
-        <div id="mouse-dpi" class="analyzer">
-            <h2>Mouse DPI Analyzer</h2>
-            <p>Click and drag your mouse in any direction within the box below. The calculation will start when you begin moving and stop when you release the mouse button. Results will reset automatically after each measurement.</p>
-            <div id="mouseBox">
-                <div id="dot"></div>
-            </div>
-            <table id="resultTable">
-                <thead>
-                    <tr>
-                        <th>Measurement</th>
-                        <th>Value</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Distance (pixels)</td>
-                        <td id="distancePixels">0</td>
-                    </tr>
-                    <tr>
-                        <td>DPI</td>
-                        <td id="dpiResult">0</td>
-                    </tr>
-                    <tr>
-                        <td>Duration (seconds)</td>
-                        <td id="duration">0</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+        function resetValues() {
+            totalDistance = 0;
+            distancePixelsCell.textContent = '0';
+            dpiResultCell.textContent = '0';
+            durationCell.textContent = '0';
+            dot.style.left = '0px';
+            dot.style.top = '0px';
+        }
 
-        <div id="image-dpi" class="analyzer">
-            <h2>Image DPI Analyzer</h2>
-            <p>Upload an image to analyze its DPI:</p>
-            <input type="file" id="imageUpload" accept="image/*">
-            <d
+        mouseBox.addEventListener('mousedown', (e) => {
+            isCalculating = true;
+            startX = e.clientX;
+            startY = e.clientY;
+            startTime = performance.now();
+            resetValues();
+            updateDotPosition(e);
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (isCalculating) {
+                updateDotPosition(e);
+                calculateDistance(e);
+            }
+        });
+
+        document.addEventListener('mouseup', () => {
+            if (isCalculating) {
+                isCalculating = false;
+                displayResult();
+                setTimeout(resetValues, 3000); // Reset after 3 seconds
+            }
+        });
+
+        function updateDotPosition(e) {
+            const boxRect = mouseBox.getBoundingClientRect();
+            let x = e.clientX - boxRect.left;
+            let y = e.clientY - boxRect.top;
+
+            x = Math.max(0, Math.min(x, boxRect.width));
+            y = Math.max(0, Math.min(y, boxRect.height));
+
+            dot.style.left = `${x}px`;
+            dot.style.top = `${y}px`;
+        }
+
+        function calculateDistance(e) {
+            const dx = e.clientX - startX;
+            const dy = e.clientY - startY;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            totalDistance += distance;
+            startX = e.clientX;
+            startY = e.clientY;
+        }
+
+        function displayResult() {
+            const endTime = performance.now();
+            const duration = (endTime - startTime) / 1000; // Convert to seconds
+            const dpi = Math.round(totalDistance / 7.4); // Assuming 7.4 inches as a standard mouse pad size
+
+            distancePixelsCell.textContent = totalDistance.toFixed(2);
+            dpiResultCell.textContent = dpi;
+            durationCell.textContent = duration.toFixed(2);
+        }
+    </script>
+</body>
+</html>
