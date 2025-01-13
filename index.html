@@ -60,7 +60,7 @@
 
     <div class="analyzer">
         <h2>Mouse DPI Analyzer</h2>
-        <p>Click and drag your mouse in any direction within the box below. The calculation will start when you begin moving and stop when you release the mouse button.</p>
+        <p>Click and drag your mouse in any direction within the box below. The calculation will start when you begin moving and stop when you release the mouse button. Results will reset automatically after each measurement.</p>
         <div id="mouseBox">
             <div id="dot"></div>
         </div>
@@ -99,12 +99,21 @@
         let startX, startY, startTime;
         let totalDistance = 0;
 
+        function resetValues() {
+            totalDistance = 0;
+            distancePixelsCell.textContent = '0';
+            dpiResultCell.textContent = '0';
+            durationCell.textContent = '0';
+            dot.style.left = '0px';
+            dot.style.top = '0px';
+        }
+
         mouseBox.addEventListener('mousedown', (e) => {
             isCalculating = true;
             startX = e.clientX;
             startY = e.clientY;
             startTime = performance.now();
-            totalDistance = 0;
+            resetValues();
             updateDotPosition(e);
         });
 
@@ -119,6 +128,7 @@
             if (isCalculating) {
                 isCalculating = false;
                 displayResult();
+                setTimeout(resetValues, 3000); // Reset after 3 seconds
             }
         });
 
