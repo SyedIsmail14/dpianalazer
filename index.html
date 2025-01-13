@@ -40,21 +40,9 @@
             top: 0;
             left: 0;
         }
-        input[type="number"] {
-            width: 100%;
-            padding: 5px;
-            margin-bottom: 10px;
-        }
-        button {
-            background-color: #3498db;
-            color: #fff;
-            border: none;
-            padding: 10px 15px;
-            cursor: pointer;
-            border-radius: 3px;
-        }
-        button:hover {
-            background-color: #2980b9;
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
         }
         table {
             width: 100%;
@@ -75,27 +63,11 @@
 
     <div class="analyzer">
         <h2>Mouse DPI Analyzer</h2>
+        <p>Click and drag your mouse in any direction within the box below. The calculation will start when you begin moving and stop when you release the mouse button.</p>
         <div id="mouseBox">
             <div id="dot"></div>
         </div>
-        <p>Horizontal Distance: <span id="horizontalDistance">0</span> px</p>
-        <p>Vertical Distance: <span id="verticalDistance">0</span> px</p>
-        <label for="physicalDistance">Physical Distance (inches):</label>
-        <input type="number" id="physicalDistance" step="0.1" min="0">
-        <button id="calculateDPI">Calculate DPI</button>
-        <p>Horizontal DPI: <span id="horizontalDPI">0</span></p>
-        <p>Vertical DPI: <span id="verticalDPI">0</span></p>
-    </div>
-
-    <div class="analyzer">
-        <h2>Image DPI Analyzer</h2>
-        <input type="file" id="imageUpload" accept="image/*">
-        <div id="imageResult"></div>
-    </div>
-
-    <div class="analyzer">
-        <h2>Monitor DPI Analyzer</h2>
-        <div id="monitorResult"></div>
+        <div id="result">Move the mouse to see results</div>
     </div>
 
     <div class="analyzer">
@@ -139,34 +111,35 @@
     </div>
 
     <script>
-        // Mouse DPI Analyzer
         const mouseBox = document.getElementById('mouseBox');
         const dot = document.getElementById('dot');
-        const horizontalDistanceSpan = document.getElementById('horizontalDistance');
-        const verticalDistanceSpan = document.getElementById('verticalDistance');
-        const physicalDistanceInput = document.getElementById('physicalDistance');
-        const calculateDPIButton = document.getElementById('calculateDPI');
-        const horizontalDPISpan = document.getElementById('horizontalDPI');
-        const verticalDPISpan = document.getElementById('verticalDPI');
+        const result = document.getElementById('result');
 
-        let isDragging = false;
-        let startX, startY;
+        let isCalculating = false;
+        let startX, startY, startTime;
+        let totalDistance = 0;
 
         mouseBox.addEventListener('mousedown', (e) => {
-            isDragging = true;
-            startX = e.clientX - mouseBox.getBoundingClientRect().left;
-            startY = e.clientY - mouseBox.getBoundingClientRect().top;
+            isCalculating = true;
+            startX = e.clientX;
+            startY = e.clientY;
+            startTime = performance.now();
+            totalDistance = 0;
             updateDotPosition(e);
         });
 
         document.addEventListener('mousemove', (e) => {
-            if (isDragging) {
+            if (isCalculating) {
                 updateDotPosition(e);
+                calculateDistance(e);
             }
         });
 
         document.addEventListener('mouseup', () => {
-            isDragging = false;
+            if (isCalculating) {
+                isCalculating = false;
+                displayResult();
+            }
         });
 
         function updateDotPosition(e) {
@@ -179,63 +152,31 @@
 
             dot.style.left = `${x}px`;
             dot.style.top = `${y}px`;
-
-            horizontalDistanceSpan.textContent = Math.round(x);
-            verticalDistanceSpan.textContent = Math.round(y);
         }
 
-        calculateDPIButton.addEventListener('click', () => {
-            const physicalDistance = parseFloat(physicalDistanceInput.value);
-            if (isNaN(physicalDistance) || physicalDistance <= 0) {
-                alert('Please enter a valid physical distance.');
-                return;
-            }
+        function calculateDistance(e) {
+            const dx = e.clientX - startX;
+            const dy = e.clientY - startY;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            totalDistance += distance;
+            startX = e.clientX;
+            startY = e.clientY;
+        }
 
-            const horizontalDPI = Math.round(parseInt(horizontalDistanceSpan.textContent) / physicalDistance);
-            const verticalDPI = Math.round(parseInt(verticalDistanceSpan.textContent) / physicalDistance);
+        function displayResult() {
+            const endTime = performance.now();
+            const duration = (endTime - startTime) / 1000; // Convert to seconds
+            const inches = totalDistance / 96; // Assuming 96 DPI as a baseline
+            const dpi = Math.round(totalDistance / inches);
+            const speed = Math.round((totalDistance / duration) * 1000 / 25.4); // Convert to IPS (Inches Per Second)
 
-            horizontalDPISpan.textContent = horizontalDPI;
-            verticalDPISpan.textContent = verticalDPI;
-        });
-
-        // Image DPI Analyzer
-        const imageUpload = document.getElementById('imageUpload');
-        const imageResult = document.getElementById('imageResult');
-
-        imageUpload.addEventListener('change', (e) => {
-            const file = e.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = (event) => {
-                    const img = new Image();
-                    img.onload = () => {
-                        const dpi = Math.sqrt(img.width * img.width + img.height * img.height) / Math.sqrt(2);
-                        imageResult.innerHTML = `
-                            <p>Image dimensions: ${img.width}x${img.height}px</p>
-                            <p>Estimated DPI: ${dpi.toFixed(2)}</p>
-                            <img src="${event.target.result}" alt="Uploaded image" style="max-width: 100%; height: auto;">
-                        `;
-                    };
-                    img.src = event.target.result;
-                };
-                reader.readAsDataURL(file);
-            }
-        });
-
-        // Monitor DPI Analyzer
-        const monitorResult = document.getElementById('monitorResult');
-
-        function calculateMonitorDPI() {
-            const dpi = window.devicePixelRatio * 96;
-            const width = window.screen.width * window.devicePixelRatio;
-            const height = window.screen.height * window.devicePixelRatio;
-            monitorResult.innerHTML = `
-                <p>Estimated Monitor DPI: ${dpi.toFixed(2)}</p>
-                <p>Screen Resolution: ${width}x${height}</p>
+            result.innerHTML = `
+                <p>Distance: ${totalDistance.toFixed(2)} pixels (${inches.toFixed(2)} inches)</p>
+                <p>Duration: ${duration.toFixed(2)} seconds</p>
+                <p>Estimated DPI: ${dpi}</p>
+                <p>Speed: ${speed} IPS (Inches Per Second)</p>
             `;
         }
-
-        calculateMonitorDPI();
     </script>
 </body>
 </html>
