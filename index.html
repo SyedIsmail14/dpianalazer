@@ -192,6 +192,41 @@ th {
     .centered-title {
     text-align: center; /* Centers the text horizontally */
     margin: 0 auto; /* Ensures proper alignment in case of additional styles */
+
+    footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+        }
+
+        footer a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+        /* Responsive Design for Footer */
+@media (max-width: 768px) {
+    footer {
+        padding: 15px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    footer {
+        padding: 10px;
+        font-size: 10px;
+    }
+
+    footer a {
+        display: block;
+        margin: 5px 0; /* Stack links vertically with some spacing */
+    }
 }
 </style>
      <script type="application/ld+json">
@@ -227,7 +262,7 @@ th {
         </div>
     </header>
 <div id="mouse-dpi" class="analyzer">
-            <h2>Mouse DPI Analyzer</h2>
+            <h1 class="centered-title">Mouse DPI Analyzer</h1>
             <p>Click and drag your mouse in any direction within the box below. The calculation will start when you begin moving and stop when you release the mouse button. Results will reset automatically after each measurement.</p>
             <div id="mouseBox">
                 <div id="dot"></div>
@@ -261,7 +296,7 @@ th {
     <div class="how-to-use">
         <h2 class="centered-title">How to Use This Tool</h3>
         <ol>
-            <li><strong>Mouse DPI:</strong> Click and drag your mouse inside the box below. Let go of the mouse button to see how far you moved and how sensitive your mouse is. Drag in any direction—left to right, right to left, upwards, or downwards. When you release the button, the result is calculated and displayed. It will automatically reset to zero, ready for your next movement.</li>
+            <li><strong>Mouse DPI:</strong> Click and drag your mouse inside the box below. Let go of the mouse button to see how far you moved and how sensitive your mouse is. Drag in any direction—left to right, right to left, upwards, or downwards. When you release the button, the result is calculated and displayed. It will automatically reset to zero, ready for your next movement. If you click double on it that time also it will update automatically thats why press one time and release and you get you accurate DPI.</li>
             <li><strong>Image DPI:</strong> Pick a picture from your computer and upload it here. The tool will check how sharp and detailed the picture is.</li>
             <li><strong>Monitor DPI:</strong> The tool automatically figures out how clear your screen is. You don’t need to do anything for this one!</li>
             <li><strong>Compare Results:</strong> Check how your mouse, pictures, or screen DPI compares to popular devices listed in the table below.</li>
@@ -270,9 +305,8 @@ th {
 </div>
 
 
-        <div id="image-dpi" class="analyzer">
             <h2 class="centered-title">Image DPI Analyzer</h2>
-            <p>Upload an image to analyze its DPI:</p>
+            <p class="centered-title">Upload an image to analyze its DPI:</p>
             <input type="file" id="imageUpload" class="centered-title" accept="image/*">
             <div id="imageResult" class="centered-title"></div>
         </div>
@@ -283,43 +317,66 @@ th {
         </div>
 
         <div id="dpi-comparison" class="analyzer">
-            <h2 class="centered-title">Common Device DPIs</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Device</th>
-                        <th>DPI</th>
-                        <th>Resolution</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>iPhone 12 Pro</td>
-                        <td>460</td>
-                        <td>2532x1170</td>
-                    </tr>
-                    <tr>
-                        <td>Samsung Galaxy S21</td>
-                        <td>421</td>
-                        <td>2400x1080</td>
-                    </tr>
-                    <tr>
-                        <td>iPad Pro 12.9"</td>
-                        <td>264</td>
-                        <td>2732x2048</td>
-                    </tr>
-                    <tr>
-                        <td>MacBook Pro 16"</td>
-                        <td>226</td>
-                        <td>3072x1920</td>
-                    </tr>
-                    <tr>
-                        <td>4K Monitor</td>
-                        <td>163</td>
-                        <td>3840x2160</td>
-                    </tr>
-                </tbody>
-            </table>
+           <h2 class="centered-title">Common Device DPIs</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Device</th>
+            <th>DPI</th>
+            <th>Resolution</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td>iPhone 12 Pro</td><td>460</td><td>2532x1170</td></tr>
+        <tr><td>Samsung Galaxy S21</td><td>421</td><td>2400x1080</td></tr>
+        <tr><td>iPad Pro 12.9"</td><td>264</td><td>2732x2048</td></tr>
+        <tr><td>MacBook Pro 16"</td><td>226</td><td>3072x1920</td></tr>
+        <tr><td>4K Monitor</td><td>163</td><td>3840x2160</td></tr>
+        <tr><td>Google Pixel 6</td><td>411</td><td>2400x1080</td></tr>
+        <tr><td>Samsung Galaxy Note 20 Ultra</td><td>496</td><td>3088x1440</td></tr>
+        <tr><td>OnePlus 9 Pro</td><td>525</td><td>3216x1440</td></tr>
+        <tr><td>Dell XPS 13</td><td>331</td><td>3840x2400</td></tr>
+        <tr><td>Surface Laptop Studio</td><td>201</td><td>2400x1600</td></tr>
+        <tr><td>iPhone 13 Pro</td><td>460</td><td>2532x1170</td></tr>
+        <tr><td>Samsung Galaxy Z Fold 3</td><td>374</td><td>2208x1768</td></tr>
+        <tr><td>iPad Mini 6</td><td>326</td><td>2266x1488</td></tr>
+        <tr><td>Surface Pro 8</td><td>267</td><td>2880x1920</td></tr>
+        <tr><td>Google Pixelbook Go</td><td>166</td><td>1920x1080</td></tr>
+        <tr><td>LG UltraFine 5K</td><td>218</td><td>5120x2880</td></tr>
+        <tr><td>iMac 27" Retina 5K</td><td>218</td><td>5120x2880</td></tr>
+        <tr><td>HP Spectre x360 14</td><td>267</td><td>3000x2000</td></tr>
+        <tr><td>Razer Blade 15 Advanced</td><td>282</td><td>3840x2160</td></tr>
+        <tr><td>Apple Watch Series 7</td><td>326</td><td>396x484</td></tr>
+        <tr><td>Google Nest Hub</td><td>169</td><td>1280x800</td></tr>
+        <tr><td>Samsung Galaxy Tab S7+</td><td>266</td><td>2800x1752</td></tr>
+        <tr><td>iPhone 14</td><td>460</td><td>2532x1170</td></tr>
+        <tr><td>Google Pixel 7 Pro</td><td>512</td><td>3120x1440</td></tr>
+        <tr><td>Asus ROG Phone 5</td><td>395</td><td>2448x1080</td></tr>
+        <tr><td>Huawei MatePad Pro</td><td>280</td><td>2560x1600</td></tr>
+        <tr><td>Lenovo ThinkPad X1 Nano</td><td>450</td><td>2160x1350</td></tr>
+        <tr><td>Alienware AW3423DW</td><td>109</td><td>3440x1440</td></tr>
+        <tr><td>LG Gram 17</td><td>178</td><td>2560x1600</td></tr>
+        <tr><td>Google Pixel 5</td><td>432</td><td>2340x1080</td></tr>
+        <tr><td>Samsung Galaxy A72</td><td>394</td><td>2400x1080</td></tr>
+        <tr><td>OnePlus Nord 2</td><td>410</td><td>2400x1080</td></tr>
+        <tr><td>Microsoft Surface Duo 2</td><td>401</td><td>2688x1892</td></tr>
+        <tr><td>MacBook Air M2</td><td>227</td><td>2560x1664</td></tr>
+        <tr><td>Lenovo Yoga Slim 7i</td><td>220</td><td>1920x1200</td></tr>
+        <tr><td>Acer Predator Helios 300</td><td>282</td><td>3840x2160</td></tr>
+        <tr><td>HP Omen 15</td><td>282</td><td>3840x2160</td></tr>
+        <tr><td>Apple Studio Display</td><td>218</td><td>5120x2880</td></tr>
+        <tr><td>Samsung Galaxy Tab A7</td><td>224</td><td>2000x1200</td></tr>
+        <tr><td>Google Pixel Slate</td><td>293</td><td>3000x2000</td></tr>
+        <tr><td>Apple iPhone XR</td><td>326</td><td>1792x828</td></tr>
+        <tr><td>Samsung Galaxy S10</td><td>550</td><td>3040x1440</td></tr>
+        <tr><td>Google Pixel 4 XL</td><td>537</td><td>3040x1440</td></tr>
+        <tr><td>LG V60 ThinQ</td><td>395</td><td>2460x1080</td></tr>
+        <tr><td>Huawei P40 Pro</td><td>441</td><td>2640x1200</td></tr>
+        <tr><td>Motorola Edge+</td><td>385</td><td>2340x1080</td></tr>
+        <tr><td>Microsoft Surface Go 3</td><td>217</td><td>1920x1280</td></tr>
+        <tr><td>Dell Alienware m15 R6</td><td>282</td><td>3840x2160</td></tr>
+    </tbody>
+</table>
         </div>
 
         <div id="faq" class="analyzer">
@@ -446,5 +503,42 @@ th {
 
         calculateMonitorDPI();
     </script>
+    <form id="commentForm">
+    <label for="comment">Leave a Comment:</label>
+    <textarea id="comment" required></textarea>
+    <button type="submit">Post</button>
+</form>
+<div id="commentsSection"></div>
+
+<script>
+    document.getElementById('commentForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const commentBox = document.getElementById('comment');
+        let comment = sanitizeInput(commentBox.value);
+
+        if (comment.includes('http') || comment.includes('www')) {
+            alert('Links are not allowed in comments.');
+        } else {
+            const commentsSection = document.getElementById('commentsSection');
+            const newComment = document.createElement('div');
+            newComment.textContent = comment;
+            commentsSection.appendChild(newComment);
+        }
+        commentBox.value = '';
+    });
+
+    function sanitizeInput(input) {
+        return input.replace(/<[^>]*>?/gm, ''); // Removes HTML tags
+    }
+</script>
+    <footer>
+        <p>&copy; 2025 DPI Analyzer Tool. All rights reserved.</p>
+        <nav>
+            <a href="#">Privacy Policy</a> |
+            <a href="#">Terms of Service</a> |
+            <a href="#">Contact Us</a>
+        </nav>
+    </footer>
+
 </body>
 </html>
