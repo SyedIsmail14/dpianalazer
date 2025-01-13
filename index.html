@@ -527,34 +527,6 @@ footer {
 
         calculateMonitorDPI();
     </script>
-    <form id="commentForm">
-    <label for="comment">Leave a Comment:</label>
-    <textarea id="comment" required></textarea>
-    <button type="submit">Post</button>
-</form>
-<div id="commentsSection"></div>
-
-<script>
-    document.getElementById('commentForm').addEventListener('submit', (e) => {
-        e.preventDefault();
-        const commentBox = document.getElementById('comment');
-        let comment = sanitizeInput(commentBox.value);
-
-        if (comment.includes('http') || comment.includes('www')) {
-            alert('Links are not allowed in comments.');
-        } else {
-            const commentsSection = document.getElementById('commentsSection');
-            const newComment = document.createElement('div');
-            newComment.textContent = comment;
-            commentsSection.appendChild(newComment);
-        }
-        commentBox.value = '';
-    });
-
-    function sanitizeInput(input) {
-        return input.replace(/<[^>]*>?/gm, ''); // Removes HTML tags
-    }
-</script>
     <footer>
         <p>&copy; 2025 DPI Analyzer Tool. All rights reserved.</p>
         <nav>
