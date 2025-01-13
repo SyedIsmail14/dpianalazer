@@ -40,13 +40,10 @@
             top: 0;
             left: 0;
         }
-        #result {
-            margin-top: 20px;
-            font-weight: bold;
-        }
         table {
             width: 100%;
             border-collapse: collapse;
+            margin-top: 20px;
         }
         th, td {
             border: 1px solid #ddd;
@@ -67,44 +64,25 @@
         <div id="mouseBox">
             <div id="dot"></div>
         </div>
-        <div id="result">Move the mouse to see results</div>
-    </div>
-
-    <div class="analyzer">
-        <h2>Common Device DPIs</h2>
-        <table>
+        <table id="resultTable">
             <thead>
                 <tr>
-                    <th>Device</th>
-                    <th>DPI</th>
-                    <th>Resolution</th>
+                    <th>Measurement</th>
+                    <th>Value</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>iPhone 12 Pro</td>
-                    <td>460</td>
-                    <td>2532x1170</td>
+                    <td>Distance (pixels)</td>
+                    <td id="distancePixels">0</td>
                 </tr>
                 <tr>
-                    <td>Samsung Galaxy S21</td>
-                    <td>421</td>
-                    <td>2400x1080</td>
+                    <td>DPI</td>
+                    <td id="dpiResult">0</td>
                 </tr>
                 <tr>
-                    <td>iPad Pro 12.9"</td>
-                    <td>264</td>
-                    <td>2732x2048</td>
-                </tr>
-                <tr>
-                    <td>MacBook Pro 16"</td>
-                    <td>226</td>
-                    <td>3072x1920</td>
-                </tr>
-                <tr>
-                    <td>4K Monitor</td>
-                    <td>163</td>
-                    <td>3840x2160</td>
+                    <td>Duration (seconds)</td>
+                    <td id="duration">0</td>
                 </tr>
             </tbody>
         </table>
@@ -113,7 +91,9 @@
     <script>
         const mouseBox = document.getElementById('mouseBox');
         const dot = document.getElementById('dot');
-        const result = document.getElementById('result');
+        const distancePixelsCell = document.getElementById('distancePixels');
+        const dpiResultCell = document.getElementById('dpiResult');
+        const durationCell = document.getElementById('duration');
 
         let isCalculating = false;
         let startX, startY, startTime;
@@ -166,16 +146,11 @@
         function displayResult() {
             const endTime = performance.now();
             const duration = (endTime - startTime) / 1000; // Convert to seconds
-            const inches = totalDistance / 96; // Assuming 96 DPI as a baseline
-            const dpi = Math.round(totalDistance / inches);
-            const speed = Math.round((totalDistance / duration) * 1000 / 25.4); // Convert to IPS (Inches Per Second)
+            const dpi = Math.round(totalDistance / 7.4); // Assuming 7.4 inches as a standard mouse pad size
 
-            result.innerHTML = `
-                <p>Distance: ${totalDistance.toFixed(2)} pixels (${inches.toFixed(2)} inches)</p>
-                <p>Duration: ${duration.toFixed(2)} seconds</p>
-                <p>Estimated DPI: ${dpi}</p>
-                <p>Speed: ${speed} IPS (Inches Per Second)</p>
-            `;
+            distancePixelsCell.textContent = totalDistance.toFixed(2);
+            dpiResultCell.textContent = dpi;
+            durationCell.textContent = duration.toFixed(2);
         }
     </script>
 </body>
