@@ -14,71 +14,51 @@
             padding: 20px;
             background-color: #f4f4f4;
         }
-        header {
-            background-color: #4a90e2;
-            color: white;
-            text-align: center;
-            padding: 1rem;
-            margin-bottom: 2rem;
-        }
         h1, h2 {
-            margin-bottom: 1rem;
+            color: #2c3e50;
         }
         .analyzer {
-            background-color: white;
-            border-radius: 8px;
+            background-color: #fff;
+            border-radius: 5px;
             padding: 20px;
-            margin-bottom: 2rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         #mouseBox {
             width: 100%;
-            height: 400px;
-            background-color: #e9ecef;
+            height: 300px;
+            background-color: #ecf0f1;
             position: relative;
-            overflow: hidden;
-            margin-bottom: 1rem;
+            cursor: crosshair;
         }
-        .scale {
-            position: absolute;
-            background-color: #f8f9fa;
-        }
-        #scaleLeftRight, #scaleRightLeft {
-            height: 20px;
-            left: 0;
-            right: 0;
-        }
-        #scaleUpDown, #scaleDownUp {
-            width: 20px;
-            top: 0;
-            bottom: 0;
-        }
-        #scaleLeftRight { top: 0; }
-        #scaleRightLeft { bottom: 0; }
-        #scaleUpDown { left: 0; }
-        #scaleDownUp { right: 0; }
-        #mouse {
-            width: 20px;
-            height: 20px;
-            background-color: #4a90e2;
+        #dot {
+            width: 10px;
+            height: 10px;
+            background-color: #3498db;
             border-radius: 50%;
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            top: 0;
+            left: 0;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+        button {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
             cursor: pointer;
+            border-radius: 3px;
         }
-        #result {
-            margin-top: 1rem;
-            font-weight: bold;
-        }
-        input[type="file"] {
-            margin-bottom: 1rem;
+        button:hover {
+            background-color: #2980b9;
         }
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 1rem;
         }
         th, td {
             border: 1px solid #ddd;
@@ -91,137 +71,131 @@
     </style>
 </head>
 <body>
-    <header>
-        <h1>DPI Analyzer Tool</h1>
-    </header>
+    <h1>DPI Analyzer Tool</h1>
 
-    <main>
-        <section class="analyzer">
-            <h2>Mouse DPI Analyzer</h2>
-            <div id="mouseBox">
-                <div id="scaleLeftRight" class="scale"></div>
-                <div id="scaleRightLeft" class="scale"></div>
-                <div id="scaleUpDown" class="scale"></div>
-                <div id="scaleDownUp" class="scale"></div>
-                <div id="mouse"></div>
-            </div>
-            <div id="result">Move the mouse to see results</div>
-        </section>
+    <div class="analyzer">
+        <h2>Mouse DPI Analyzer</h2>
+        <div id="mouseBox">
+            <div id="dot"></div>
+        </div>
+        <p>Horizontal Distance: <span id="horizontalDistance">0</span> px</p>
+        <p>Vertical Distance: <span id="verticalDistance">0</span> px</p>
+        <label for="physicalDistance">Physical Distance (inches):</label>
+        <input type="number" id="physicalDistance" step="0.1" min="0">
+        <button id="calculateDPI">Calculate DPI</button>
+        <p>Horizontal DPI: <span id="horizontalDPI">0</span></p>
+        <p>Vertical DPI: <span id="verticalDPI">0</span></p>
+    </div>
 
-        <section class="analyzer">
-            <h2>Image DPI Analyzer</h2>
-            <input type="file" id="imageUpload" accept="image/*">
-            <div id="imageResult"></div>
-        </section>
+    <div class="analyzer">
+        <h2>Image DPI Analyzer</h2>
+        <input type="file" id="imageUpload" accept="image/*">
+        <div id="imageResult"></div>
+    </div>
 
-        <section class="analyzer">
-            <h2>Monitor DPI Analyzer</h2>
-            <div id="monitorResult"></div>
-        </section>
+    <div class="analyzer">
+        <h2>Monitor DPI Analyzer</h2>
+        <div id="monitorResult"></div>
+    </div>
 
-        <section class="analyzer">
-            <h2>Common Device DPIs</h2>
-            <table id="deviceTable">
-                <thead>
-                    <tr>
-                        <th>Device</th>
-                        <th>DPI</th>
-                        <th>Resolution</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Table rows will be populated by JavaScript -->
-                </tbody>
-            </table>
-        </section>
-    </main>
+    <div class="analyzer">
+        <h2>Common Device DPIs</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Device</th>
+                    <th>DPI</th>
+                    <th>Resolution</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>iPhone 12 Pro</td>
+                    <td>460</td>
+                    <td>2532x1170</td>
+                </tr>
+                <tr>
+                    <td>Samsung Galaxy S21</td>
+                    <td>421</td>
+                    <td>2400x1080</td>
+                </tr>
+                <tr>
+                    <td>iPad Pro 12.9"</td>
+                    <td>264</td>
+                    <td>2732x2048</td>
+                </tr>
+                <tr>
+                    <td>MacBook Pro 16"</td>
+                    <td>226</td>
+                    <td>3072x1920</td>
+                </tr>
+                <tr>
+                    <td>4K Monitor</td>
+                    <td>163</td>
+                    <td>3840x2160</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
     <script>
         // Mouse DPI Analyzer
         const mouseBox = document.getElementById('mouseBox');
-        const mouse = document.getElementById('mouse');
-        const result = document.getElementById('result');
-        const scaleLeftRight = document.getElementById('scaleLeftRight');
-        const scaleRightLeft = document.getElementById('scaleRightLeft');
-        const scaleUpDown = document.getElementById('scaleUpDown');
-        const scaleDownUp = document.getElementById('scaleDownUp');
+        const dot = document.getElementById('dot');
+        const horizontalDistanceSpan = document.getElementById('horizontalDistance');
+        const verticalDistanceSpan = document.getElementById('verticalDistance');
+        const physicalDistanceInput = document.getElementById('physicalDistance');
+        const calculateDPIButton = document.getElementById('calculateDPI');
+        const horizontalDPISpan = document.getElementById('horizontalDPI');
+        const verticalDPISpan = document.getElementById('verticalDPI');
 
         let isDragging = false;
         let startX, startY;
-        let pixelDistance = 0;
-        const stopDistance = 7.4 * 96; // 7.4 inches in pixels
-
-        function updateScales() {
-            const boxWidth = mouseBox.offsetWidth;
-            const boxHeight = mouseBox.offsetHeight;
-            
-            function createScaleMarkers(scale, isVertical) {
-                let scaleHTML = '';
-                const maxDistance = isVertical ? boxHeight : boxWidth;
-                for (let i = 0; i <= maxDistance; i += 48) { // 48 pixels = 0.5 inches
-                    const inches = (i / 96).toFixed(1);
-                    const position = isVertical ? `top: ${i}px;` : `left: ${i}px;`;
-                    const size = isVertical ? 'width: 10px;' : 'height: 10px;';
-                    scaleHTML += `<div style="position:absolute;${position}${size}border-${isVertical ? 'top' : 'left'}:1px solid #333;"></div>`;
-                    scaleHTML += `<div style="position:absolute;${position}font-size:10px;${isVertical ? 'left' : 'top'}:20px;">${inches}"</div>`;
-                }
-                scale.innerHTML = scaleHTML;
-            }
-
-            createScaleMarkers(scaleLeftRight, false);
-            createScaleMarkers(scaleRightLeft, false);
-            createScaleMarkers(scaleUpDown, true);
-            createScaleMarkers(scaleDownUp, true);
-        }
-
-        function updateMousePosition(e) {
-            const boxRect = mouseBox.getBoundingClientRect();
-            let mouseX = e.clientX - boxRect.left - mouse.offsetWidth / 2;
-            let mouseY = e.clientY - boxRect.top - mouse.offsetHeight / 2;
-
-            mouseX = Math.max(0, Math.min(mouseX, boxRect.width - mouse.offsetWidth));
-            mouseY = Math.max(0, Math.min(mouseY, boxRect.height - mouse.offsetHeight));
-
-            const centerX = boxRect.width / 2;
-            const centerY = boxRect.height / 2;
-
-            const dx = mouseX - centerX;
-            const dy = mouseY - centerY;
-            pixelDistance = Math.sqrt(dx * dx + dy * dy);
-
-            if (pixelDistance > stopDistance) {
-                const angle = Math.atan2(dy, dx);
-                mouseX = centerX + Math.cos(angle) * stopDistance;
-                mouseY = centerY + Math.sin(angle) * stopDistance;
-                pixelDistance = stopDistance;
-            }
-
-            mouse.style.left = `${mouseX}px`;
-            mouse.style.top = `${mouseY}px`;
-
-            const distanceInches = (pixelDistance / 96).toFixed(2);
-            const dpi = Math.round((window.devicePixelRatio * 96 * pixelDistance) / (7.4 * 96));
-
-            result.innerHTML = `
-                Pixel Distance: ${pixelDistance.toFixed(2)}px<br>
-                Distance: ${distanceInches}"<br>
-                Calculated DPI: ${dpi}
-            `;
-        }
 
         mouseBox.addEventListener('mousedown', (e) => {
             isDragging = true;
-            updateMousePosition(e);
+            startX = e.clientX - mouseBox.getBoundingClientRect().left;
+            startY = e.clientY - mouseBox.getBoundingClientRect().top;
+            updateDotPosition(e);
         });
 
         document.addEventListener('mousemove', (e) => {
             if (isDragging) {
-                updateMousePosition(e);
+                updateDotPosition(e);
             }
         });
 
         document.addEventListener('mouseup', () => {
             isDragging = false;
+        });
+
+        function updateDotPosition(e) {
+            const boxRect = mouseBox.getBoundingClientRect();
+            let x = e.clientX - boxRect.left;
+            let y = e.clientY - boxRect.top;
+
+            x = Math.max(0, Math.min(x, boxRect.width));
+            y = Math.max(0, Math.min(y, boxRect.height));
+
+            dot.style.left = `${x}px`;
+            dot.style.top = `${y}px`;
+
+            horizontalDistanceSpan.textContent = Math.round(x);
+            verticalDistanceSpan.textContent = Math.round(y);
+        }
+
+        calculateDPIButton.addEventListener('click', () => {
+            const physicalDistance = parseFloat(physicalDistanceInput.value);
+            if (isNaN(physicalDistance) || physicalDistance <= 0) {
+                alert('Please enter a valid physical distance.');
+                return;
+            }
+
+            const horizontalDPI = Math.round(parseInt(horizontalDistanceSpan.textContent) / physicalDistance);
+            const verticalDPI = Math.round(parseInt(verticalDistanceSpan.textContent) / physicalDistance);
+
+            horizontalDPISpan.textContent = horizontalDPI;
+            verticalDPISpan.textContent = verticalDPI;
         });
 
         // Image DPI Analyzer
@@ -261,31 +235,7 @@
             `;
         }
 
-        // Common Device DPIs
-        const deviceTable = document.getElementById('deviceTable').getElementsByTagName('tbody')[0];
-        const commonDevices = [
-            { name: 'iPhone 12 Pro', dpi: 460, resolution: '2532x1170' },
-            { name: 'Samsung Galaxy S21', dpi: 421, resolution: '2400x1080' },
-            { name: 'iPad Pro 12.9"', dpi: 264, resolution: '2732x2048' },
-            { name: 'MacBook Pro 16"', dpi: 226, resolution: '3072x1920' },
-            { name: '4K Monitor', dpi: 163, resolution: '3840x2160' },
-            // Add more devices here
-        ];
-
-        function populateDeviceTable() {
-            commonDevices.forEach(device => {
-                const row = deviceTable.insertRow();
-                row.insertCell(0).textContent = device.name;
-                row.insertCell(1).textContent = device.dpi;
-                row.insertCell(2).textContent = device.resolution;
-            });
-        }
-
-        // Initialize
-        updateScales();
         calculateMonitorDPI();
-        populateDeviceTable();
-        window.addEventListener('resize', updateScales);
     </script>
 </body>
 </html>
