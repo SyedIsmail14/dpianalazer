@@ -193,41 +193,65 @@ th {
     text-align: center; /* Centers the text horizontally */
     margin: 0 auto; /* Ensures proper alignment in case of additional styles */
 
-    footer {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 20px;
-            font-size: 14px;
-        }
+    /* Footer styles */
+footer {
+    background-color: #2c3e50; /* Match the header's color */
+    color: #fff;
+    padding: 1rem 0;
+    text-align: center;
+    font-size: 1rem;
+}
 
-        footer a {
-            color: #fff;
-            text-decoration: none;
-        }
+.footer-links {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    flex-wrap: wrap;
+}
 
-        footer a:hover {
-            text-decoration: underline;
-        }
-        /* Responsive Design for Footer */
+.footer-links li {
+    margin: 0 15px;
+}
+
+.footer-links a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #3498db; /* Same hover effect as the header */
+}
+
+/* Responsive footer styles */
 @media (max-width: 768px) {
     footer {
-        padding: 15px;
-        font-size: 12px;
+        font-size: 0.9rem;
+    }
+
+    .footer-links li {
+        margin: 0 10px;
     }
 }
 
 @media (max-width: 480px) {
     footer {
-        padding: 10px;
-        font-size: 10px;
+        font-size: 0.8rem;
+        padding: 1rem;
     }
 
-    footer a {
-        display: block;
-        margin: 5px 0; /* Stack links vertically with some spacing */
+    .footer-links {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-links li {
+        margin: 5px 0;
     }
 }
+
 </style>
      <script type="application/ld+json">
     {
