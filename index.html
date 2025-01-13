@@ -3,16 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DPI Analyzer Tool</title>
+    <title>DPI Analyzer Tool - Measure Mouse, Image, and Monitor DPI</title>
+    <meta name="description" content="Accurately measure and analyze DPI for your mouse, images, and monitor with our free online DPI Analyzer Tool. Get precise results instantly.">
+    <meta name="keywords" content="DPI analyzer, mouse DPI, image DPI, monitor DPI, DPI measurement tool">
+    <link rel="canonical" href="https://www.example.com/dpi-analyzer-tool">
     <style>
         body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
             color: #333;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
+            margin: 0;
+            padding: 0;
             background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        header {
+            background-color: #2c3e50;
+            color: #fff;
+            padding: 1rem 0;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+        .nav-links li {
+            margin-left: 20px;
+        }
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
         }
         h1, h2 {
             color: #2c3e50;
@@ -53,40 +85,156 @@
         th {
             background-color: #f2f2f2;
         }
+        .how-to-use {
+            background-color: #e8f4fd;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .how-to-use h3 {
+            margin-top: 0;
+            color: #3498db;
+        }
     </style>
 </head>
 <body>
-    <h1>DPI Analyzer Tool</h1>
-
-    <div class="analyzer">
-        <h2>Mouse DPI Analyzer</h2>
-        <p>Click and drag your mouse in any direction within the box below. The calculation will start when you begin moving and stop when you release the mouse button. Results will reset automatically after each measurement.</p>
-        <div id="mouseBox">
-            <div id="dot"></div>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">DPI Analyzer</div>
+                <ul class="nav-links">
+                    <li><a href="#mouse-dpi">Mouse DPI</a></li>
+                    <li><a href="#image-dpi">Image DPI</a></li>
+                    <li><a href="#monitor-dpi">Monitor DPI</a></li>
+                    <li><a href="#dpi-comparison">DPI Comparison</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
+            </nav>
         </div>
-        <table id="resultTable">
-            <thead>
-                <tr>
-                    <th>Measurement</th>
-                    <th>Value</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Distance (pixels)</td>
-                    <td id="distancePixels">0</td>
-                </tr>
-                <tr>
-                    <td>DPI</td>
-                    <td id="dpiResult">0</td>
-                </tr>
-                <tr>
-                    <td>Duration (seconds)</td>
-                    <td id="duration">0</td>
-                </tr>
-            </tbody>
-        </table>
+    </header>
+
+    <div class="container">
+        <h1>DPI Analyzer Tool</h1>
+
+        <div class="how-to-use">
+            <h3>How to Use This Tool</h3>
+            <ol>
+                <li>For Mouse DPI: Click and drag within the box below. Release to see results.</li>
+                <li>For Image DPI: Upload an image using the provided input.</li>
+                <li>For Monitor DPI: Your monitor's DPI is automatically calculated.</li>
+                <li>Compare your results with common devices in the DPI Comparison table.</li>
+            </ol>
+        </div>
+
+        <div id="mouse-dpi" class="analyzer">
+            <h2>Mouse DPI Analyzer</h2>
+            <p>Click and drag your mouse in any direction within the box below. The calculation will start when you begin moving and stop when you release the mouse button. Results will reset automatically after each measurement.</p>
+            <div id="mouseBox">
+                <div id="dot"></div>
+            </div>
+            <table id="resultTable">
+                <thead>
+                    <tr>
+                        <th>Measurement</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Distance (pixels)</td>
+                        <td id="distancePixels">0</td>
+                    </tr>
+                    <tr>
+                        <td>DPI</td>
+                        <td id="dpiResult">0</td>
+                    </tr>
+                    <tr>
+                        <td>Duration (seconds)</td>
+                        <td id="duration">0</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div id="image-dpi" class="analyzer">
+            <h2>Image DPI Analyzer</h2>
+            <p>Upload an image to analyze its DPI:</p>
+            <input type="file" id="imageUpload" accept="image/*">
+            <div id="imageResult"></div>
+        </div>
+
+        <div id="monitor-dpi" class="analyzer">
+            <h2>Monitor DPI Analyzer</h2>
+            <div id="monitorResult"></div>
+        </div>
+
+        <div id="dpi-comparison" class="analyzer">
+            <h2>Common Device DPIs</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Device</th>
+                        <th>DPI</th>
+                        <th>Resolution</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>iPhone 12 Pro</td>
+                        <td>460</td>
+                        <td>2532x1170</td>
+                    </tr>
+                    <tr>
+                        <td>Samsung Galaxy S21</td>
+                        <td>421</td>
+                        <td>2400x1080</td>
+                    </tr>
+                    <tr>
+                        <td>iPad Pro 12.9"</td>
+                        <td>264</td>
+                        <td>2732x2048</td>
+                    </tr>
+                    <tr>
+                        <td>MacBook Pro 16"</td>
+                        <td>226</td>
+                        <td>3072x1920</td>
+                    </tr>
+                    <tr>
+                        <td>4K Monitor</td>
+                        <td>163</td>
+                        <td>3840x2160</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div id="faq" class="analyzer">
+            <h2>Frequently Asked Questions</h2>
+            <h3>What is DPI?</h3>
+            <p>DPI stands for Dots Per Inch, which measures the sensitivity of a mouse or the resolution of an image or display.</p>
+            <h3>Why is DPI important?</h3>
+            <p>DPI affects cursor speed and precision for mice, image quality for printing, and display sharpness for monitors.</p>
+            <h3>How accurate is this tool?</h3>
+            <p>While this tool provides a good estimate, factors like mouse acceleration and screen resolution can affect accuracy.</p>
+        </div>
     </div>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "DPI Analyzer Tool",
+      "url": "https://www.example.com/dpi-analyzer-tool",
+      "description": "Accurately measure and analyze DPI for your mouse, images, and monitor with our free online DPI Analyzer Tool.",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
 
     <script>
         const mouseBox = document.getElementById('mouseBox');
@@ -162,6 +310,45 @@
             dpiResultCell.textContent = dpi;
             durationCell.textContent = duration.toFixed(2);
         }
+
+        // Image DPI Analyzer
+        const imageUpload = document.getElementById('imageUpload');
+        const imageResult = document.getElementById('imageResult');
+
+        imageUpload.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    const img = new Image();
+                    img.onload = () => {
+                        const dpi = Math.sqrt(img.width * img.width + img.height * img.height) / Math.sqrt(2);
+                        imageResult.innerHTML = `
+                            <p>Image dimensions: ${img.width}x${img.height}px</p>
+                            <p>Estimated DPI: ${dpi.toFixed(2)}</p>
+                            <img src="${event.target.result}" alt="Uploaded image" style="max-width: 100%; height: auto;">
+                        `;
+                    };
+                    img.src = event.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Monitor DPI Analyzer
+        const monitorResult = document.getElementById('monitorResult');
+
+        function calculateMonitorDPI() {
+            const dpi = window.devicePixelRatio * 96;
+            const width = window.screen.width * window.devicePixelRatio;
+            const height = window.screen.height * window.devicePixelRatio;
+            monitorResult.innerHTML = `
+                <p>Estimated Monitor DPI: ${dpi.toFixed(2)}</p>
+                <p>Screen Resolution: ${width}x${height}</p>
+            `;
+        }
+
+        calculateMonitorDPI();
     </script>
 </body>
 </html>
