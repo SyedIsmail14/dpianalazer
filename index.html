@@ -222,6 +222,72 @@ footer p {
     border-radius: 5px; /* Optional: Add rounded corners */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow */
 }
+       /* Result container styles */
+.result-container {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* Table styles for result display */
+.result-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.result-table th,
+.result-table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.result-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+/* Uploaded image styling */
+.uploaded-image {
+    max-width: 100%;
+    height: auto;
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* Error message styling */
+.error-message {
+    color: red;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+    .result-table th, .result-table td {
+        padding: 8px;
+    }
+
+    .uploaded-image {
+        margin-top: 5px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .result-table th, .result-table td {
+        padding: 6px;
+        font-size: 0.9rem;
+    }
+
+    .uploaded-image {
+        margin-top: 5px;
+    }
+}
+
 
 </style>
      <script type="application/ld+json">
@@ -299,12 +365,15 @@ footer p {
     </div>
 </div>
 
-           <div>
-            <h2 class="centered-title spaced-section">Image DPI Analyzer</h2>
-            <p class="centered-title">Upload an image to analyze its DPI:</p>
-            <input type="file" id="imageUpload" class="centered-title" accept="image/*">
-            <div id="imageResult" class="centered-title"></div>
-        </div>
+          <div id="image-dpi" class="analyzer spaced-section">
+    <h2 class="centered-title">Image DPI Analyzer</h2>
+    <p class="centered-title">Upload an image to analyze its DPI:</p>
+    <input type="file" id="imageUpload" class="centered-title" accept="image/*">
+    <div id="imageResult" class="result-container">
+        <!-- Table for results will appear here -->
+    </div>
+</div>
+
 
         <div id="monitor-dpi" class="analyzer">
             <h2 class="centered-title">Monitor DPI Analyzer</h2>
@@ -459,29 +528,78 @@ footer p {
             durationCell.textContent = duration.toFixed(2);
         }
 
-        // Image DPI Analyzer
-        const imageUpload = document.getElementById('imageUpload');
-        const imageResult = document.getElementById('imageResult');
+       // Image DPI Analyzer
+const imageUpload = document.getElementById('imageUpload');
+const imageResult = document.getElementById('imageResult');
+let clearResultTimeout;
 
-        imageUpload.addEventListener('change', (e) => {
-            const file = e.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = (event) => {
-                    const img = new Image();
-                    img.onload = () => {
-                        const dpi = Math.sqrt(img.width * img.width + img.height * img.height) / Math.sqrt(2);
-                        imageResult.innerHTML = `
-                            <p>Image dimensions: ${img.width}x${img.height}px</p>
-                            <p>Estimated DPI: ${dpi.toFixed(2)}</p>
-                            <img src="${event.target.result}" alt="Uploaded image" style="max-width: 100%; height: auto;">
-                        `;
-                    };
-                    img.src = event.target.result;
-                };
-                reader.readAsDataURL(file);
-            }
-        });
+// Function to clear results
+function clearResults() {
+    imageResult.innerHTML = ''; // Clears the content
+}
+
+// Event listener for file input
+imageUpload.addEventListener('change', (e) => {
+    clearTimeout(clearResultTimeout); // Clears previous timeout if a new image is uploaded
+
+    const file = e.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+
+        reader.onload = (event) => {
+            const img = new Image();
+            img.onload = () => {
+                const SCREEN_DPI = 96; // Assumed screen DPI
+                const widthInInches = img.width / SCREEN_DPI;
+                const heightInInches = img.height / SCREEN_DPI;
+                const diagonalInPixels = Math.sqrt(img.width ** 2 + img.height ** 2);
+                const diagonalInInches = Math.sqrt(widthInInches ** 2 + heightInInches ** 2);
+                const estimatedDPI = diagonalInPixels / diagonalInInches;
+
+                // Display results in a table format
+                imageResult.innerHTML = `
+                    <table class="result-table">
+                        <tr>
+                            <th>Property</th>
+                            <th>Value</th>
+                        </tr>
+                        <tr>
+                            <td>Image Width</td>
+                            <td>${img.width}px</td>
+                        </tr>
+                        <tr>
+                            <td>Image Height</td>
+                            <td>${img.height}px</td>
+                        </tr>
+                        <tr>
+                            <td>Estimated DPI</td>
+                            <td>${estimatedDPI.toFixed(2)}</td>
+                        </tr>
+                    </table>
+                    <img src="${event.target.result}" alt="Uploaded image" class="uploaded-image">
+                `;
+
+                // Automatically clear results after 4 seconds
+                clearResultTimeout = setTimeout(clearResults, 4000);
+            };
+
+            img.onerror = () => {
+                imageResult.innerHTML = `<p class="error-message">Failed to load the image. Please try again.</p>`;
+            };
+
+            img.src = event.target.result;
+        };
+
+        reader.onerror = () => {
+            imageResult.innerHTML = `<p class="error-message">Failed to read the file. Please try again.</p>`;
+        };
+
+        reader.readAsDataURL(file);
+    } else {
+        imageResult.innerHTML = `<p class="error-message">No file selected. Please choose an image file.</p>`;
+    }
+});
+
 
         // Monitor DPI Analyzer
         const monitorResult = document.getElementById('monitorResult');
