@@ -3,74 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy - DPI Analyzer Tool</title>
+    <title>Contact Us - DPI Analyzer Tool</title>
     <style>
+        /* Base styles */
         body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
             color: #333;
             margin: 0;
             padding: 0;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
+            background-color: #f4f4f4;
         }
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
         }
+        /* Header and Footer styles */
         header, footer {
             background-color: #2c3e50;
             color: #fff;
             padding: 1rem 0;
         }
-        header .container, footer .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .logo {
+        .logo, .footer-logo {
             font-size: 1.5rem;
             font-weight: bold;
             color: #fff;
             text-decoration: none;
         }
-        nav ul {
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-links, .footer-links {
             list-style: none;
             display: flex;
             padding: 0;
             margin: 0;
         }
-        nav ul li {
+        .nav-links li, .footer-links li {
             margin-left: 20px;
         }
-        nav ul li a {
+        .nav-links a, .footer-links a {
             color: #fff;
             text-decoration: none;
             transition: color 0.3s ease;
         }
-        nav ul li a:hover {
+        .nav-links a:hover, .footer-links a:hover {
             color: #3498db;
         }
+        /* Main content styles */
         main {
-            flex-grow: 1;
             padding: 2rem 0;
         }
         h1, h2 {
             color: #2c3e50;
         }
-        @media (max-width: 768px) {
-            header .container, footer .container {
+        .contact-info {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+        /* Responsive styles */
+        @media screen and (max-width: 768px) {
+            .container {
                 flex-direction: column;
                 align-items: flex-start;
             }
-            nav ul {
-                margin-top: 1rem;
+            .nav-links, .footer-links {
+                flex-direction: column;
+                align-items: flex-start;
             }
-            nav ul li {
+            .nav-links li, .footer-links li {
                 margin-left: 0;
-                margin-right: 20px;
+                margin-bottom: 10px;
             }
         }
     </style>
@@ -80,12 +94,14 @@
         <div class="container">
             <a href="index.html" class="logo">DPI Analyzer</a>
             <nav>
-                <ul>
+                <ul class="nav-links">
                     <li><a href="index.html#mouse-dpi">Mouse DPI</a></li>
                     <li><a href="index.html#image-dpi">Image DPI</a></li>
                     <li><a href="index.html#monitor-dpi">Monitor DPI</a></li>
                     <li><a href="index.html#dpi-comparison">DPI Comparison</a></li>
                     <li><a href="index.html#faq">FAQ</a></li>
+                    <li><a href="contact-us.html">Contact Us</a></li>
+                    <li><a href="about-us.html">About Us</a></li>
                 </ul>
             </nav>
         </div>
@@ -93,36 +109,23 @@
 
     <main>
         <div class="container">
-            <h1>Privacy Policy</h1>
-            <p>
-                At DPI Analyzer, we are committed to protecting your privacy and ensuring the security of your personal information. 
-                This Privacy Policy outlines how we collect, use, and safeguard your data when you use our DPI Analyzer tool.
-            </p>
-            <h2>Information We Collect</h2>
-            <p>
-                We collect minimal information necessary to provide our DPI analysis services. This may include:
-            </p>
-            <ul>
-                <li>Device information (screen resolution, pixel density)</li>
-                <li>Mouse movement data for DPI calculation</li>
-                <li>Uploaded image metadata for DPI analysis</li>
-            </ul>
-            <h2>How We Use Your Information</h2>
-            <p>
-                The information we collect is used solely for the purpose of providing accurate DPI analysis. We do not store or 
-                share your personal data with third parties.
-            </p>
-            <p>
-                For more detailed information about our privacy practices, please contact us at privacy@dpianalyzer.com.
-            </p>
+            <h1>Contact Us</h1>
+            <p>We value your feedback and are here to assist you with any questions or concerns you may have about our DPI Analyzer tool.</p>
+            <div class="contact-info">
+                <h2>Get in Touch</h2>
+                <p><strong>Email:</strong> support@dpianalyzer.com</p>
+                <p><strong>Phone:</strong> +1 (555) 123-4567</p>
+                <p><strong>Address:</strong> 123 Tech Street, Silicon Valley, CA 94000, USA</p>
+            </div>
+            <p>Our support team is available Monday through Friday, 9 AM to 5 PM PST. We strive to respond to all inquiries within 24 business hours.</p>
         </div>
     </main>
 
     <footer>
         <div class="container">
-            <a href="index.html" class="logo">DPI Analyzer</a>
+            <a href="index.html" class="footer-logo">DPI Analyzer</a>
             <nav>
-                <ul>
+                <ul class="footer-links">
                     <li><a href="privacy-policy.html">Privacy Policy</a></li>
                     <li><a href="terms-of-service.html">Terms of Service</a></li>
                     <li><a href="contact-us.html">Contact Us</a></li>
