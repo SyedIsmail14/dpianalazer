@@ -528,93 +528,120 @@ footer p {
             durationCell.textContent = duration.toFixed(2);
         }
 
-       // Image DPI Analyzer
+      // Image DPI Analyzer
 const imageUpload = document.getElementById('imageUpload');
 const imageResult = document.getElementById('imageResult');
-let clearResultTimeout;
+let clearResultTimeout; // To clear timeout if needed
+let updateInterval; // To store the interval ID for automatic updates
+
+// Function to calculate and display image properties
+function displayImageProperties(file) {
+    const reader = new FileReader();
+
+    reader.onload = (event) => {
+        const img = new Image();
+
+        img.onload = () => {
+            const SCREEN_DPI = 96; // Assumed screen DPI
+            const widthInInches = img.width / SCREEN_DPI;
+            const heightInInches = img.height / SCREEN_DPI;
+            const diagonalInPixels = Math.sqrt(img.width ** 2 + img.height ** 2);
+            const diagonalInInches = Math.sqrt(widthInInches ** 2 + heightInInches ** 2);
+            const estimatedDPI = diagonalInPixels / diagonalInInches;
+
+            // Display results in a table format
+            imageResult.innerHTML = `
+                <table class="result-table">
+                    <tr>
+                        <th>Property</th>
+                        <th>Value</th>
+                    </tr>
+                    <tr>
+                        <td>Image Width</td>
+                        <td>${img.width}px</td>
+                    </tr>
+                    <tr>
+                        <td>Image Height</td>
+                        <td>${img.height}px</td>
+                    </tr>
+                    <tr>
+                        <td>Estimated DPI</td>
+                        <td>${estimatedDPI.toFixed(2)}</td>
+                    </tr>
+                </table>
+                <img src="${event.target.result}" alt="Uploaded image" class="uploaded-image">
+            `;
+        };
+
+        img.onerror = () => {
+            imageResult.innerHTML = `<p class="error-message">Failed to load the image. Please try again.</p>`;
+        };
+
+        img.src = event.target.result;
+    };
+
+    reader.onerror = () => {
+        imageResult.innerHTML = `<p class="error-message">Failed to read the file. Please try again.</p>`;
+    };
+
+    reader.readAsDataURL(file);
+}
 
 // Function to clear results
 function clearResults() {
+    clearTimeout(clearResultTimeout); // Clear any existing timeout
+    clearInterval(updateInterval); // Stop automatic updates
     imageResult.innerHTML = ''; // Clears the content
 }
 
 // Event listener for file input
 imageUpload.addEventListener('change', (e) => {
-    clearTimeout(clearResultTimeout); // Clears previous timeout if a new image is uploaded
-
     const file = e.target.files[0];
+
     if (file) {
-        const reader = new FileReader();
+        clearResults(); // Clear existing results and intervals
+        displayImageProperties(file); // Display new image properties
 
-        reader.onload = (event) => {
-            const img = new Image();
-            img.onload = () => {
-                const SCREEN_DPI = 96; // Assumed screen DPI
-                const widthInInches = img.width / SCREEN_DPI;
-                const heightInInches = img.height / SCREEN_DPI;
-                const diagonalInPixels = Math.sqrt(img.width ** 2 + img.height ** 2);
-                const diagonalInInches = Math.sqrt(widthInInches ** 2 + heightInInches ** 2);
-                const estimatedDPI = diagonalInPixels / diagonalInInches;
-
-                // Display results in a table format
-                imageResult.innerHTML = `
-                    <table class="result-table">
-                        <tr>
-                            <th>Property</th>
-                            <th>Value</th>
-                        </tr>
-                        <tr>
-                            <td>Image Width</td>
-                            <td>${img.width}px</td>
-                        </tr>
-                        <tr>
-                            <td>Image Height</td>
-                            <td>${img.height}px</td>
-                        </tr>
-                        <tr>
-                            <td>Estimated DPI</td>
-                            <td>${estimatedDPI.toFixed(2)}</td>
-                        </tr>
-                    </table>
-                    <img src="${event.target.result}" alt="Uploaded image" class="uploaded-image">
-                `;
-
-                // Automatically clear results after 4 seconds
-                clearResultTimeout = setTimeout(clearResults, 4000);
-            };
-
-            img.onerror = () => {
-                imageResult.innerHTML = `<p class="error-message">Failed to load the image. Please try again.</p>`;
-            };
-
-            img.src = event.target.result;
-        };
-
-        reader.onerror = () => {
-            imageResult.innerHTML = `<p class="error-message">Failed to read the file. Please try again.</p>`;
-        };
-
-        reader.readAsDataURL(file);
+        // Set automatic update every 10 seconds
+        updateInterval = setInterval(() => {
+            displayImageProperties(file);
+        }, 10000);
     } else {
         imageResult.innerHTML = `<p class="error-message">No file selected. Please choose an image file.</p>`;
     }
 });
 
 
-        // Monitor DPI Analyzer
-        const monitorResult = document.getElementById('monitorResult');
+       // Monitor DPI Analyzer
+const monitorResult = document.getElementById('monitorResult');
 
-        function calculateMonitorDPI() {
-            const dpi = window.devicePixelRatio * 96;
-            const width = window.screen.width * window.devicePixelRatio;
-            const height = window.screen.height * window.devicePixelRatio;
-            monitorResult.innerHTML = `
-                <p>Estimated Monitor DPI: ${dpi.toFixed(2)}</p>
-                <p>Screen Resolution: ${width}x${height}</p>
-            `;
-        }
+function calculateMonitorDPI() {
+    const dpi = window.devicePixelRatio * 96;
+    const width = window.screen.width * window.devicePixelRatio;
+    const height = window.screen.height * window.devicePixelRatio;
 
-        calculateMonitorDPI();
+    // Display results in a table format
+    monitorResult.innerHTML = `
+        <table class="result-table">
+            <tr>
+                <th>Property</th>
+                <th>Value</th>
+            </tr>
+            <tr>
+                <td>Estimated Monitor DPI</td>
+                <td>${dpi.toFixed(2)}</td>
+            </tr>
+            <tr>
+                <td>Screen Resolution</td>
+                <td>${width}x${height}</td>
+            </tr>
+        </table>
+    `;
+}
+
+// Initial calculation
+calculateMonitorDPI();
+
     </script>
    <footer>
     <div class="container">
