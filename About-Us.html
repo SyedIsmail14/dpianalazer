@@ -5,72 +5,79 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - DPI Analyzer Tool</title>
     <style>
+        /* Base styles */
         body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
             color: #333;
             margin: 0;
             padding: 0;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
+            background-color: #f4f4f4;
         }
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
         }
+        /* Header and Footer styles */
         header, footer {
             background-color: #2c3e50;
             color: #fff;
             padding: 1rem 0;
         }
-        header .container, footer .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .logo {
+        .logo, .footer-logo {
             font-size: 1.5rem;
             font-weight: bold;
             color: #fff;
             text-decoration: none;
         }
-        nav ul {
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-links, .footer-links {
             list-style: none;
             display: flex;
             padding: 0;
             margin: 0;
         }
-        nav ul li {
+        .nav-links li, .footer-links li {
             margin-left: 20px;
         }
-        nav ul li a {
+        .nav-links a, .footer-links a {
             color: #fff;
             text-decoration: none;
             transition: color 0.3s ease;
         }
-        nav ul li a:hover {
+        .nav-links a:hover, .footer-links a:hover {
             color: #3498db;
         }
+        /* Main content styles */
         main {
-            flex-grow: 1;
             padding: 2rem 0;
         }
-        h1 {
+        h1, h2 {
             color: #2c3e50;
         }
-        @media (max-width: 768px) {
-            header .container, footer .container {
+        /* Responsive styles */
+        @media screen and (max-width: 768px) {
+            .container {
                 flex-direction: column;
                 align-items: flex-start;
             }
-            nav ul {
-                margin-top: 1rem;
+            .nav-links, .footer-links {
+                flex-direction: column;
+                align-items: flex-start;
             }
-            nav ul li {
+            .nav-links li, .footer-links li {
                 margin-left: 0;
-                margin-right: 20px;
+                margin-bottom: 10px;
             }
         }
     </style>
@@ -80,12 +87,14 @@
         <div class="container">
             <a href="index.html" class="logo">DPI Analyzer</a>
             <nav>
-                <ul>
+                <ul class="nav-links">
                     <li><a href="index.html#mouse-dpi">Mouse DPI</a></li>
                     <li><a href="index.html#image-dpi">Image DPI</a></li>
                     <li><a href="index.html#monitor-dpi">Monitor DPI</a></li>
                     <li><a href="index.html#dpi-comparison">DPI Comparison</a></li>
                     <li><a href="index.html#faq">FAQ</a></li>
+                    <li><a href="contact-us.html">Contact Us</a></li>
+                    <li><a href="about-us.html">About Us</a></li>
                 </ul>
             </nav>
         </div>
@@ -94,29 +103,17 @@
     <main>
         <div class="container">
             <h1>About Us</h1>
-            <p>
-                DPI Analyzer is a cutting-edge tool designed to help users understand and optimize their digital experience. 
-                Our team of passionate developers and designers created this platform to demystify the concept of DPI (Dots Per Inch) 
-                and its impact on various aspects of digital interaction.
-            </p>
-            <p>
-                We believe that understanding DPI is crucial for anyone working with digital devices, whether you're a gamer looking 
-                to optimize your mouse settings, a designer aiming for the perfect print quality, or simply a curious individual 
-                wanting to learn more about your devices.
-            </p>
-            <p>
-                Our mission is to provide accurate, easy-to-understand DPI analysis for mice, images, and monitors, helping our users 
-                make informed decisions about their digital setup. We're committed to continuous improvement and welcome feedback 
-                from our community to enhance our tools and services.
-            </p>
+            <p>DPI Analyzer is a cutting-edge tool designed to help users understand and optimize their digital experience. Our team of passionate developers and designers created this platform to demystify the concept of DPI (Dots Per Inch) and its impact on various aspects of digital interaction.</p>
+            <p>We believe that understanding DPI is crucial for anyone working with digital devices, whether you're a gamer looking to optimize your mouse settings, a designer aiming for the perfect print quality, or simply a curious individual wanting to learn more about your devices.</p>
+            <p>Our mission is to provide accurate, easy-to-understand DPI analysis for mice, images, and monitors, helping our users make informed decisions about their digital setup. We're committed to continuous improvement and welcome feedback from our community to enhance our tools and services.</p>
         </div>
     </main>
 
     <footer>
         <div class="container">
-            <a href="index.html" class="logo">DPI Analyzer</a>
+            <a href="index.html" class="footer-logo">DPI Analyzer</a>
             <nav>
-                <ul>
+                <ul class="footer-links">
                     <li><a href="privacy-policy.html">Privacy Policy</a></li>
                     <li><a href="terms-of-service.html">Terms of Service</a></li>
                     <li><a href="contact-us.html">Contact Us</a></li>
