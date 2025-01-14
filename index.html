@@ -206,7 +206,14 @@ footer p {
         margin: 5px 0;
     }
 }
-
+       .centered-title {
+    text-align: center; /* Centers the text horizontally */
+    margin: 0 auto; /* Ensures proper alignment */
+    display: flex; /* Flexbox for better alignment control */
+    justify-content: center; /* Centers horizontally within flex container */
+    align-items: center; /* Centers vertically (if a height is specified) */
+    height: 100%; /* Optional: Set the height of the container for vertical centering */
+}
 </style>
      <script type="application/ld+json">
     {
@@ -242,7 +249,7 @@ footer p {
 </header>
 <div id="mouse-dpi" class="analyzer">
             <h1 class="centered-title">Mouse DPI Analyzer</h1>
-            <p>Click and drag your mouse in any direction within the box below. The calculation will start when you begin moving and stop when you release the mouse button. Results will reset automatically after each measurement.</p>
+            <p>Mouse DPI: Click and drag your mouse within the box below. Release the mouse button to measure how far you moved and assess your mouse's sensitivity. You can drag in any direction—left, right, up, or down. Once you release the button, the result will be calculated and displayed. The box will reset automatically, ready for your next movement. Avoid double-clicking, as it may cause an automatic update. For accurate results, press and release the mouse button once.</p>
             <div id="mouseBox">
                 <div id="dot"></div>
             </div>
