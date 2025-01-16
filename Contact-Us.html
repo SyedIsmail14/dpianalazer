@@ -284,8 +284,51 @@ footer p {
         margin-top: 5px;
     }
 }
-
-
+        .contact-info {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+        .contact-form {
+            margin-top: 20px;
+        }
+        .contact-form label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .contact-form button {
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .contact-form button:hover {
+            background-color: #2980b9;
+        }
+        /* Responsive styles */
+        @media screen and (max-width: 768px) {
+            .container {
+                padding: 0 10px;
+            }
+            .nav-links, .footer-links {
+                flex-direction: column;
+            }
+            .nav-links li, .footer-links li {
+                margin: 5px 0;
+            }
+        }
 </style>
 </head>
 <body>
