@@ -18,10 +18,6 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
         }
         /* Header and Footer styles */
         header, footer {
@@ -37,7 +33,6 @@
         }
         nav {
             display: flex;
-            flex-wrap: wrap;
             justify-content: space-between;
             align-items: center;
         }
@@ -65,25 +60,29 @@
         h1, h2 {
             color: #2c3e50;
         }
+        .about-section {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
         /* Responsive styles */
         @media screen and (max-width: 768px) {
             .container {
-                flex-direction: column;
-                align-items: flex-start;
+                padding: 0 10px;
             }
             .nav-links, .footer-links {
                 flex-direction: column;
-                align-items: flex-start;
             }
             .nav-links li, .footer-links li {
-                margin-left: 0;
-                margin-bottom: 10px;
+                margin: 5px 0;
             }
         }
     </style>
 </head>
 <body>
-    <header>
+ <header>
         <div class="container">
             <a href="index.html" class="logo">DPI Analyzer</a>
             <nav>
@@ -93,8 +92,8 @@
                     <li><a href="index.html#monitor-dpi">Monitor DPI</a></li>
                     <li><a href="index.html#dpi-comparison">DPI Comparison</a></li>
                     <li><a href="index.html#faq">FAQ</a></li>
-                    <li><a href="contact-us.html">Contact Us</a></li>
-                    <li><a href="about-us.html">About Us</a></li>
+                    <li><a href="Contact-Us.html">Contact Us</a></li>
+                    <li><a href="About-Us.html">About Us</a></li>
                 </ul>
             </nav>
         </div>
@@ -103,9 +102,36 @@
     <main>
         <div class="container">
             <h1>About Us</h1>
-            <p>DPI Analyzer is a cutting-edge tool designed to help users understand and optimize their digital experience. Our team of passionate developers and designers created this platform to demystify the concept of DPI (Dots Per Inch) and its impact on various aspects of digital interaction.</p>
-            <p>We believe that understanding DPI is crucial for anyone working with digital devices, whether you're a gamer looking to optimize your mouse settings, a designer aiming for the perfect print quality, or simply a curious individual wanting to learn more about your devices.</p>
-            <p>Our mission is to provide accurate, easy-to-understand DPI analysis for mice, images, and monitors, helping our users make informed decisions about their digital setup. We're committed to continuous improvement and welcome feedback from our community to enhance our tools and services.</p>
+            <div class="about-section">
+                <h2>Our Mission</h2>
+                <p>At DPI Analyzer, our mission is to provide users with accurate and easy-to-use tools for measuring and understanding DPI (Dots Per Inch) across various devices and media. We believe that understanding DPI is crucial for optimizing digital experiences, whether you're a gamer, designer, or tech enthusiast.</p>
+            </div>
+            
+            <div class="about-section">
+                <h2>Our Story</h2>
+                <p>Founded in 2023, DPI Analyzer was born out of a passion for technology and a desire to simplify complex concepts. Our team of dedicated developers and designers noticed a gap in the market for user-friendly DPI measurement tools. We set out to create a comprehensive platform that would help users analyze and optimize their digital setups with ease.</p>
+            </div>
+            
+            <div class="about-section">
+                <h2>What We Offer</h2>
+                <p>Our DPI Analyzer Tool provides a suite of features designed to measure and analyze DPI across different mediums:</p>
+                <ul>
+                    <li>Mouse DPI Analyzer: Measure your mouse's sensitivity and performance</li>
+                    <li>Image DPI Analyzer: Determine the resolution and quality of your digital images</li>
+                    <li>Monitor DPI Analyzer: Assess your display's pixel density for optimal viewing</li>
+                    <li>DPI Comparison Charts: Compare your results with common devices and industry standards</li>
+                </ul>
+            </div>
+            
+            <div class="about-section">
+                <h2>Our Commitment</h2>
+                <p>We are committed to providing accurate, reliable, and up-to-date information to our users. Our team continuously works on improving our tools and expanding our knowledge base to ensure that you have access to the best resources for understanding and optimizing DPI in your digital life.</p>
+            </div>
+            
+            <div class="about-section">
+                <h2>Get in Touch</h2>
+                <p>We value your feedback and are always looking for ways to improve our services. If you have any questions, suggestions, or concerns, please don't hesitate to <a href="contact-us.html">contact us</a>. Your input helps us grow and serve you better.</p>
+            </div>
         </div>
     </main>
 
@@ -115,9 +141,7 @@
             <nav>
                 <ul class="footer-links">
                     <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                    <li><a href="terms-of-service.html">Terms of Service</a></li>
-                    <li><a href="contact-us.html">Contact Us</a></li>
-                    <li><a href="about-us.html">About Us</a></li>
+                    <li><a href="Terms-and-conditions.html">Terms of Service</a></li>
                 </ul>
             </nav>
         </div>
@@ -127,3 +151,4 @@
     </footer>
 </body>
 </html>
+
