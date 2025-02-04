@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="canonical" href="https://www.dpianalyzer.online/edpi-calculator.html" />
  <title>eDPI Calculator | eDPI for Valorant</title>
   <meta name="description" content="Calculate your eDPI easily with our online eDPI calculator for gaming. Get accurate results instantly.">
     <script type="application/ld+json">
@@ -10,7 +11,7 @@
       "@context": "https://schema.org",
       "@type": "WebApplication",
       "name": "eDPI Calculator",
-      "url": "",
+      "url": "https://www.dpianalyzer.online/edpi-calculator.html",
       "description": "An online tool to calculate eDPI for gaming.",
       "applicationCategory": "Utilities",
       "operatingSystem": "Web",
@@ -187,7 +188,7 @@ button:hover {
         <input type="number" step="0.01" id="sensitivity" placeholder="Enter your sensitivity">
         <button onclick="calculateEDPI()">Calculate eDPI</button><br>
         <br>
-    <div class="result1" id="result1"></div>
+    <div class="result" id="result"></div>
     </div>
 <br>
     <script>
@@ -196,12 +197,12 @@ button:hover {
             let sensitivity = parseFloat(document.getElementById('sensitivity').value);
             
             if (isNaN(dpi) || isNaN(sensitivity)) {
-                document.getElementById('result1').innerText = "Please enter valid numbers.";
+                document.getElementById('result').innerText = "Please enter valid numbers.";
                 return;
             }
             
             let edpi = dpi * sensitivity;
-            document.getElementById('result1').innerText = "Your eDPI is: " + edpi.toFixed(2);
+            document.getElementById('result').innerText = "Your eDPI is: " + edpi.toFixed(2);
         }
     </script>
       <br>
