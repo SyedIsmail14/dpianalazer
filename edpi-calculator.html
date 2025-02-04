@@ -110,9 +110,9 @@ footer p {
     }
 }
 .container1 {
-    max-width: 90%; /* Adjust width for responsiveness */
-    width: 400px; /* Ensures it's not too wide */
-    min-width: 300px; /* Prevents shrinking too much on small devices */
+    width: 90%; /* Adjusts width based on screen size */
+    max-width: 400px; /* Prevents it from becoming too large */
+    min-width: 300px; /* Ensures it doesn't shrink too much */
     margin: auto;
     padding: 20px;
     border: 1px solid #ddd;
@@ -121,53 +121,21 @@ footer p {
     background: white;
 }
 
-/* Input Fields */
-input {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px; /* Improves readability */
-}
-
-/* Button Styles */
 button {
-    width: 100%; /* Makes it more touch-friendly */
-    padding: 12px;
+    width: 100%; /* Makes it fit the container width */
+    padding: 12px; /* Keeps padding consistent */
     background: #007bff;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 16px; /* Improves visibility */
+    font-size: 16px;
     transition: background 0.3s ease;
 }
 
 button:hover {
     background: #0056b3;
 }
-
-/* Result Display */
-.result1 {
-    margin-top: 20px;
-    font-size: 1.2em;
-    font-weight: bold;
-    text-align: center;
-}
-
-/* Media Query for Larger Screens */
-@media (min-width: 768px) {
-    .container1 {
-        max-width: 400px; /* Fixed width for larger screens */
-    }
-
-    button {
-        width: auto; /* Prevents button from stretching too much on desktops */
-        padding: 10px 20px;
-    }
-}
-
 </style>
 </head>
 <body>
