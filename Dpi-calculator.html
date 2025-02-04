@@ -10,7 +10,7 @@
   "@context": "http://schema.org",
   "@type": "WebApplication",
   "name": "DPI Analyzer",
-  "url": "",
+  "url": "https://www.dpianalyzer.online/Dpi-calculator.html",
   "description": "Calculate your DPI easily with our online DPI calculator for gaming. Get accurate results instantly.",
   "applicationCategory": "WebApp",
   "operatingSystem": "All",
@@ -18,7 +18,7 @@
     "@type": "Organization",
     "name": "DPI Analyzer"
   },
-  "mainEntityOfPage": "",
+  "mainEntityOfPage": "https://www.dpianalyzer.online/Dpi-calculator.html",
   "manifest": "/manifest.json",
   "startUrl": "/index.html",
   "themeColor": "#2c3e50",
@@ -103,6 +103,7 @@ footer p {
         margin-left: 0;
         margin-bottom: 10px;
     }
+}
 @media screen and (max-width: 480px) {
     .logo, .footer-logo {
         font-size: 1.2rem;
@@ -116,11 +117,54 @@ footer p {
         margin: 5px 0;
     }
 }
-.container1 { max-width: 400px; margin: auto; padding: 20px; border: 1px solid #ddd; border-radius: 10px; box-shadow: 2px 2px 10px rgba(0,0,0,0.1); }
-        input { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; }
-        button { padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; }
-        button:hover { background: #0056b3; }
-        .result { margin-top: 20px; font-size: 1.2em; font-weight: bold; }
+.container1 {
+    width: 90%; /* Responsive width */
+    max-width: 400px; /* Prevents it from becoming too large */
+    min-width: 300px; /* Prevents shrinking too much */
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    background: white;
+}
+
+/* Input Fields */
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px; /* Improves readability */
+}
+
+
+/* Button Styles */
+button {
+    width: 100%; /* Makes it more touch-friendly */
+    padding: 12px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px; /* Improves visibility */
+    transition: background 0.3s ease;
+}
+
+
+button:hover {
+    background: #0056b3;
+}
+
+/* Result Display */
+.result {
+    margin-top: 20px;
+    font-size: 1.2em;
+    font-weight: bold;
+    text-align: center;
+}
 
 
 </style>
