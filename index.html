@@ -356,6 +356,23 @@ footer p {
         </nav>
     </div>
 </header>
+    <div id="google_translate_element"></div>
+
+<script>
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement(
+      { 
+        pageLanguage: 'en', 
+        includedLanguages: 'hi,es,pt,de,fr,ru,zh,ja,th', 
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE 
+      }, 
+      'google_translate_element'
+    );
+  }
+</script>
+
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 <div id="mouse-dpi" class="analyzer spaced-section">
             <h1 class="centered-title">Mouse DPI Analyzer</h1>
             <p>Mouse DPI: Click and drag your mouse within the box below. Release the mouse button to measure how far you moved and assess your mouse's sensitivity. You can drag in any direction—left, right, up, or down. Once you release the button, the result will be calculated and displayed. Ready for your next movement, Avoid double-clicking, as it may cause an automatic update. For accurate results, press and release the mouse button once.</p>
