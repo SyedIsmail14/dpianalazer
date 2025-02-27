@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DPI Analyzer Tool - Measure Mouse, Image, and Monitor DPI</title>
+    <meta name="description" content="Accurately measure and analyze DPI for your mouse, images, and monitor with our free online DPI Analyzer Tool. Get precise results instantly.">
+    <meta name="keywords" content="DPI analyzer, mouse DPI analyzer, image DPI, monitor DPI, DPI measurement tool">
+   <link rel="canonical" href="https://www.dpianalyzer.online/">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <!-- Clarity tracking code for https://www.dpianalyzer.online/ -->
+<script>
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i+"?ref=bwt";
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "qet866skxq");
+</script>
+ <style>
+ /* Base styles */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* Header and Footer styles */
+header, footer {
+    background-color: #2c3e50; /* Shared background color */
+    color: #fff;
+    padding: 1rem 0;
+}
+
+.logo, .footer-logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-links, .footer-links {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-links li, .footer-links li {
+    margin-left: 20px;
+}
+
+.nav-links a, .footer-links a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover, .footer-links a:hover {
+    color: #3498db;
+}
+
+/* Typography */
+h1, h2 {
+    color: #2c3e50;
+}
+
+/* Component styles */
+.analyzer {
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#mouseBox {
+    width: 100%;
+    height: 300px;
+    background-color: #ecf0f1;
+    position: relative;
+    cursor: crosshair;
+}
+
+#dot {
+    width: 10px;
+    height: 10px;
+    background-color: #3498db;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* Table styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+/* How to use section */
+.how-to-use {
+    background-color: #e8f4fd;
+    border-left: 4px solid #3498db;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.how-to-use h3 {
+    margin-top: 0;
+    color: #3498db;
+}
+
+/* Footer paragraph alignment */
+footer p {
+    text-align: center;
+    font-size: 1rem;
+    margin: 1rem 0 0;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nav-links, .footer-links {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nav-links li, .footer-links li {
+        margin-left: 0;
+        margin-bottom: 10px;
+    }
+
+    table {
+        font-size: 0.9rem;
+    }
+
+    th, td {
+        padding: 6px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .logo, .footer-logo {
+        font-size: 1.2rem;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    h2 {
+        font-size: 1.3rem;
+    }
+
+    .analyzer {
+        padding: 15px;
+    }
+
+    #mouseBox {
+        height: 150px;
+    }
+
+    table {
+        font-size: 0.8rem;
+    }
+
+    th, td {
+        padding: 4px;
+    }
+
+    footer p {
+        font-size: 0.8rem;
+    }
+    .footer-links {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-links li {
+        margin: 5px 0;
+    }
+}
+       .centered-title {
+    text-align: center; /* Centers the text horizontally */
+    margin: 0 auto; /* Ensures proper alignment */
+    display: flex; /* Flexbox for better alignment control */
+    justify-content: center; /* Centers horizontally within flex container */
+    align-items: center; /* Centers vertically (if a height is specified) */
+    height: 100%; /* Optional: Set the height of the container for vertical centering */
+}
+       /* Adds spacing above and below sections */
+.spaced-section {
+    margin: 40px 0; /* Adds 40px of space above and below the section */
+    padding: 20px; /* Adds 20px of padding inside the section */
+    background-color: #fff; /* Optional: Set a background color */
+    border-radius: 5px; /* Optional: Add rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow */
+}
+       /* Result container styles */
+.result-container {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* Table styles for result display */
+.result-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.result-table th,
+.result-table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.result-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+/* Uploaded image styling */
+.uploaded-image {
+    max-width: 100%;
+    height: auto;
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* Error message styling */
+.error-message {
+    color: red;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+    .result-table th, .result-table td {
+        padding: 8px;
+    }
+
+    .uploaded-image {
+        margin-top: 5px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .result-table th, .result-table td {
+        padding: 6px;
+        font-size: 0.9rem;
+    }
+
+    .uploaded-image {
+        margin-top: 5px;
+    }
+}
+</style>
+     <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Image DPI Analyzer Tool",
+      "url": "",
+      "description": "Accurately measure and analyze DPI for your mouse, images, and monitor with our free online DPI Analyzer Tool.",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+     </script>
+    <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How accurate is this tool?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "While this tool provides a good estimate, factors like uploaded image dpi accurately."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is DPI??",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "DPI, or Dots Per Inch, is a way to measure how many tiny dots or pixels fit into one inch of a screen, print, or digital image. It’s a simple way to describe how sharp or clear something looks, whether it’s a display, a printed photo, or an image.."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is DPI important?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "DPI affects cursor speed and precision for mice, image quality for printing, and display sharpness for monitors."
+        }
+      }
+    ]
+  }
+  </script>
+
+    
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0YV324M1JW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0YV324M1JW');
+</script>
+</head>
+<body>
+   <header>
+    <div class="container">
+        <a href="https://www.dpianalyzer.online/" class="logo">DPI Analyzer</a>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="">Mouse DPI</a></li>
+                <li><a href="">Image DPI</a></li>
+                <li><a href="">Monitor DPI</a></li>
+                 <li><a href="Dpi-calculator.html">Dpi Calculator</a></li>
+                <li><a href="edpi-calculator.html">eDpi Calculator</a></li>
+                <li><a href="click-speed-calculator.html">Click speed Calculator</a></li>
+                <li><a href="Contact-Us.html">Contact Us</a></li>
+                <li><a href="About-Us.html">About Us</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+  <div id="image-dpi" class="analyzer spaced-section">
+    <h1 class="centered-title">Image DPI Analyzer</h1>
+    <p class="centered-title">Upload an image to analyze its DPI:</p>
+    <input type="file" id="imageUpload" class="centered-title" accept="image/*">
+    <div id="imageResult" class="result-container">
+        <!-- Table for results will appear here -->
+    </div>
+</div>
+    <div class="how-to-use">
+        <h2 class="centered-title">How to Use Image Dpi analyzer online Tool</h2>
+       <ol>
+                     <li><strong>Image DPI:</strong> Pick a picture from your computer and upload it here. The tool will check how sharp and detailed the picture is.</li>
+       </ol>
+       </div>
+</div>
+  <div id="faq" class="analyzer">
+            <h3 class="centered-title">Frequently Asked Questions</h3>
+            <h3>How accurate is this tool?</h3>
+            <p>While this tool provides a good estimate, factors like uploaded image dpi accurately.</p>
+            <h3>Why is DPI important?</h3>
+            <p>DPI affects cursor speed and precision for mice, image quality for printing, and display sharpness for monitors.</p>
+             <h3>What is DPI?</h3>
+            <p>DPI, or Dots Per Inch, is a way to measure how many tiny dots or pixels fit into one inch of a screen, print, or digital image. It’s a simple way to describe how sharp or clear something looks, whether it’s a display, a printed photo, or an image..</p>
+        </div>
+    </div>
+   <script>
+      // Image DPI Analyzer
+const imageUpload = document.getElementById('imageUpload');
+const imageResult = document.getElementById('imageResult');
+let clearResultTimeout; // To clear timeout if needed
+let updateInterval; // To store the interval ID for automatic updates
+
+// Function to calculate and display image properties
+function displayImageProperties(file) {
+    const reader = new FileReader();
+
+    reader.onload = (event) => {
+        const img = new Image();
+
+        img.onload = () => {
+            const SCREEN_DPI = 96; // Assumed screen DPI
+            const widthInInches = img.width / SCREEN_DPI;
+            const heightInInches = img.height / SCREEN_DPI;
+            const diagonalInPixels = Math.sqrt(img.width ** 2 + img.height ** 2);
+            const diagonalInInches = Math.sqrt(widthInInches ** 2 + heightInInches ** 2);
+            const estimatedDPI = diagonalInPixels / diagonalInInches;
+
+            // Display results in a table format
+            imageResult.innerHTML = `
+                <table class="result-table">
+                    <tr>
+                        <th>Property</th>
+                        <th>Value</th>
+                    </tr>
+                    <tr>
+                        <td>Image Width</td>
+                        <td>${img.width}px</td>
+                    </tr>
+                    <tr>
+                        <td>Image Height</td>
+                        <td>${img.height}px</td>
+                    </tr>
+                    <tr>
+                        <td>Estimated DPI</td>
+                        <td>${estimatedDPI.toFixed(2)}</td>
+                    </tr>
+                </table>
+                <img src="${event.target.result}" alt="Uploaded image" class="uploaded-image">
+            `;
+        };
+
+        img.onerror = () => {
+            imageResult.innerHTML = `<p class="error-message">Failed to load the image. Please try again.</p>`;
+        };
+
+        img.src = event.target.result;
+    };
+
+    reader.onerror = () => {
+        imageResult.innerHTML = `<p class="error-message">Failed to read the file. Please try again.</p>`;
+    };
+
+    reader.readAsDataURL(file);
+}
+
+// Function to clear results
+function clearResults() {
+    clearTimeout(clearResultTimeout); // Clear any existing timeout
+    clearInterval(updateInterval); // Stop automatic updates
+    imageResult.innerHTML = ''; // Clears the content
+}
+
+// Event listener for file input
+imageUpload.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+
+    if (file) {
+        clearResults(); // Clear existing results and intervals
+        displayImageProperties(file); // Display new image properties
+
+        // Set automatic update every 10 seconds
+        updateInterval = setInterval(() => {
+            displayImageProperties(file);
+        }, 10000);
+    } else {
+        imageResult.innerHTML = `<p class="error-message">No file selected. Please choose an image file.</p>`;
+    }
+});
+   </script>
+   <footer>
+    <div class="container">
+        <a href="https://www.dpianalyzer.online/" class="footer-logo">DPI Analyzer</a>
+        <nav>
+            <ul class="footer-links">
+<li>
+                <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                <li><a href="Terms-and-condition.html">Terms of Service</a></li>
+                                   </ul>
+        </nav>
+        <p>&copy; 2025 DPI Analyzer Tool. All rights reserved.</p>
+    </div>
+</footer>
+</body>
+</html>
