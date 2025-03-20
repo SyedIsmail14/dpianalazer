@@ -165,6 +165,23 @@ button:hover {
     font-weight: bold;
     text-align: center;
 }
+        .dpi-wrapper {
+            width: 75%;
+            margin: auto;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .dpi-section {
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 5px solid #007bff;
+            background: #fdfdfd;
+            border-radius: 8px;
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
 
 
 </style>
@@ -211,6 +228,21 @@ button:hover {
         <input type="number" step="0.01" id="inchesMoved" placeholder="Enter inches moved">
         <button onclick="calculateDPI()">Calculate DPI</button>
         <div class="result" id="result"></div>
+    </div>
+    <div class="dpi-wrapper">
+        <section class="dpi-section">
+            <h1>DPI Calculator</h1>
+            <p>The DPI (Dots Per Inch) Calculator is an essential tool for gamers, designers, and professionals who need to determine the sensitivity and accuracy of their mouse movements. This tool helps users fine-tune their settings to achieve optimal precision and control.</p>
+        </section>
+        
+        <section class="dpi-section">
+            <h2>How to Use the DPI Calculator</h2>
+            <p>Using the DPI Calculator is simple and efficient. Follow these steps:</p>
+            <p><strong>Step 1:</strong> Enter the number of pixels moved by the mouse.</p>
+            <p><strong>Step 2:</strong> Input the number of inches the mouse traveled.</p>
+            <p><strong>Step 3:</strong> Click the "Calculate DPI" button to get instant results.</p>
+            <p>This tool ensures that you achieve the best gaming performance and accuracy for professional work.</p>
+        </section>
     </div>
 
     <script>
