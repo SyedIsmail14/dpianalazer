@@ -159,6 +159,57 @@ button:hover {
     font-weight: bold;
     text-align: center;
 }
+        .edpi-wrapper {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 30px;
+            background: rgba(50, 50, 70, 0.9);
+            border-radius: 12px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+            color: #ffffff;
+        }
+
+        .edpi-wrapper h1, 
+        .edpi-wrapper h2 {
+            text-align: center;
+            color: #ffcc00;
+        }
+
+        .edpi-wrapper p {
+            font-size: 18px;
+            line-height: 1.6;
+            text-align: justify;
+            color: #ddd;
+        }
+
+        .edpi-highlight {
+            color: #ff5733;
+            font-weight: bold;
+            text-shadow: 0px 0px 10px rgba(255, 87, 51, 0.8);
+        }
+
+        .edpi-wrapper ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .edpi-wrapper ul li {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 8px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .edpi-wrapper ul li:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+
+        .edpi-wrapper strong {
+            color: #ffcc00;
+        }
+
 </style>
     <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-0YV324M1JW"></script>
@@ -217,6 +268,23 @@ button:hover {
             document.getElementById('result').innerText = "Your eDPI is: " + edpi.toFixed(2);
         }
     </script>
+    <div class="edpi-wrapper">
+        <h1>What is eDPI?</h1>
+        <p>The <span class="edpi-highlight">eDPI (Effective Dots Per Inch) Calculator</span> is a tool used by gamers to determine the true sensitivity of their mouse. It is calculated using the formula:</p>
+        <p><strong>eDPI = DPI × In-game Sensitivity</strong></p>
+        <p>This allows players to have a standardized measurement of their mouse settings, making it easier to compare sensitivity across different DPI values.</p>
+        
+        <h2>Why is eDPI Important for Gaming?</h2>
+        <ul>
+            <li><strong>Consistency Across Games:</strong> Ensures the same sensitivity across different FPS games like Valorant and CS:GO.</li>
+            <li><strong>Competitive Advantage:</strong> Professional gamers use optimized eDPI values for better accuracy and control.</li>
+            <li><strong>Better Aim and Tracking:</strong> Helps in achieving precise aim movement and smooth tracking of targets.</li>
+            <li><strong>Avoiding Overcorrection:</strong> Prevents mouse movements from being too slow or too fast, enhancing reaction times.</li>
+        </ul>
+        <p>By using an eDPI calculator, gamers can fine-tune their settings for optimal performance and achieve the perfect balance between speed and accuracy.</p>
+    </div>
+
+
       <br>
           <div class="faq">
         <h2>Frequently Asked Questions (FAQs)</h2>
